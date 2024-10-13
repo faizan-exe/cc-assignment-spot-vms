@@ -40,7 +40,12 @@ variable "vm" {
     tags                      = list(string)
     allow_stopping_for_update = bool
     desired_status            = string
+    service_account = object({
+    email = string
+    scopes = list(string)
+  })
   }))
+  
 }
 locals {
 }

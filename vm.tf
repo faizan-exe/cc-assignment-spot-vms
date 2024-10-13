@@ -2,6 +2,8 @@ resource "google_compute_address" "static_public" {
   name = join("-", ["external-ip", "docker", "vm"])
 }
 
+
+
 resource "google_compute_instance" "vm" {
   for_each     = var.vm
   name         = each.value.name
@@ -30,4 +32,8 @@ resource "google_compute_instance" "vm" {
   desired_status = each.value.desired_status
   tags = each.value.tags
   depends_on = [google_compute_address.static_public]
+  service_account {
+    email = each.value.service_account.email
+    scopes = each.value.service_account.scopes
+  }
 }

@@ -20,7 +20,16 @@ vm = {
     tags                      = ["ansible", "infrastructure", "ssh", "docker"]
     allow_stopping_for_update = true
     desired_status            = "RUNNING"
+
+    service_account = {
+    email = "cc-assignment-1@cc-assignment-1-437714.iam.gserviceaccount.com"
+    scopes = ["cloud-platform"]
   }
+
+
+  }
+
+  
  
 }
 

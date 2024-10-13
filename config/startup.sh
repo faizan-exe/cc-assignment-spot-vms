@@ -37,9 +37,18 @@ systemctl start docker
 # Add the current user to the docker group
 usermod -aG docker ${USER}
 
+#Fixing Docker Config
+newgrp docker
+
 # Verify Docker and Docker Compose installation
 docker --version
 docker-compose --version
+
+#Pulling image from GCR Registry and runing it
+gcloud auth configure-docker gcr.io
+docker pull \
+    gcr.io/cc-assignment-1-437714/gcp-thumbnail-generator:latest
+docker run gcr.io/cc-assignment-1-437714/gcp-thumbnail-generator:latest
 
 # Create flag file to indicate that the script has been executed
 touch "$FLAG_FILE"
